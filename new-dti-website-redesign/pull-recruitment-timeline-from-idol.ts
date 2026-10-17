@@ -33,6 +33,16 @@ const getTimelineContent = (): string => {
 const getDiff = (existingContent: string, nextContent: string): string =>
   createPatch(EVENTS_PATH, existingContent, nextContent, 'main', 'Firebase', { context: 0 });
 
+const getWorkflowRepository = (): { owner: string; repo: string } => {
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY ?? '').split('/');
+
+  if (!owner || !repo) {
+    throw new Error('GitHub Actions did not provide the workflow repository.');
+  }
+
+  return { owner, repo };
+};
+const { owner, repo } = getWorkflowRepository();
 const main = async (): Promise<void> => {
   if (!process.env.CI) {
     console.log('This script only creates a pull request in GitHub Actions.');
@@ -58,9 +68,9 @@ const main = async (): Promise<void> => {
   runCommand('git', 'push', '-f', 'origin', BOT_BRANCH);
 
   const octokit = new Octokit({ auth: process.env.BOT_TOKEN });
-  const existingPR = (
-    await octokit.pulls.list({ owner: 'cornell-dti', repo: 'idol', state: 'open' })
-  ).data.find((pr) => pr.title === COMMIT_MESSAGE);
+  const existingPR = (await octokit.pulls.list({ owner, repo, state: 'open' })).data.find(
+    (pr) => pr.title === COMMIT_MESSAGE
+  );
   const body = `## Recruitment timeline changes
 
 \`\`\`diff
@@ -71,15 +81,15 @@ This PR was generated from the Recruitment Timeline admin page. Please review th
 
   if (existingPR) {
     await octokit.pulls.update({
-      owner: 'cornell-dti',
-      repo: 'idol',
+      owner,
+      repo,
       pull_number: existingPR.number,
       body
     });
   } else {
     await octokit.pulls.create({
-      owner: 'cornell-dti',
-      repo: 'idol',
+      owner,
+      repo,
       title: COMMIT_MESSAGE,
       body,
       base: 'main',

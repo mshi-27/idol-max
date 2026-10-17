@@ -6,8 +6,8 @@ import { PermissionError } from '../utils/errors';
 import { serializeRecruitmentTimelineEvents } from '../utils/recruitmentTimelineWebsite';
 
 const WEBSITE_REPOSITORY = {
-  owner: 'cornell-dti',
-  repo: 'idol',
+  owner: process.env.RECRUITMENT_WEBSITE_OWNER || 'cornell-dti',
+  repo: process.env.RECRUITMENT_WEBSITE_REPO || 'idol',
   path: 'new-dti-website-redesign/src/app/apply/events.json',
   ref: 'main'
 };
