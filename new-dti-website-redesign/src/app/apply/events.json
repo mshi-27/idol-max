@@ -153,6 +153,15 @@
       "type": "workshop",
       "freshmen": { "date": "October 7", "isTentative": false, "time": "5:00-6:30PM" },
       "upperclassmen": { "date": "September 2", "isTentative": false, "time": "5-6PM" }
+    },
+    {
+      "title": "Test Event",
+      "description": "This is a test uhh...",
+      "location": "Gates Hall",
+      "type": "info",
+      "link": "https://youtube.com",
+      "freshmen": { "date": "October 12", "isTentative": false, "time": "6:00pm" },
+      "upperclassmen": { "date": "October 12", "isTentative": false, "time": "6:00-7:00pm" }
     }
   ]
 }
