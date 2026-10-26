@@ -155,13 +155,19 @@
       "upperclassmen": { "date": "September 2", "isTentative": false, "time": "5-6PM" }
     },
     {
-      "title": "Test Event",
-      "description": "This is a test uhh...",
+      "title": "test evnet 12",
+      "description": "test",
       "location": "Gates Hall",
       "type": "info",
-      "link": "https://youtube.com",
-      "freshmen": { "date": "October 12", "isTentative": false, "time": "6:00pm" },
-      "upperclassmen": { "date": "October 12", "isTentative": false, "time": "6:00-7:00pm" }
+      "freshmen": { "date": "January 27", "isTentative": false, "time": "12:01am-1:00pm" }
+    },
+    {
+      "title": "Test Event",
+      "description": "This is a test event for the demo",
+      "location": "Gates Hall",
+      "type": "application",
+      "freshmen": { "date": "October 20", "isTentative": false, "time": "7:00pm" },
+      "upperclassmen": { "date": "October 27", "isTentative": false, "time": "7:00pm" }
     }
   ]
 }
